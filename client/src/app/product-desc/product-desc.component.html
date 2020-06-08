@@ -1,0 +1,82 @@
+
+  <div *ngIf="noProductDetail" class="noProduct">No Product Found</div>
+  <div class="product-desc-page">
+
+    <mat-card  class="create-form" [ngClass]="{'show':isForm ,'hide':!isForm }">
+      <form [formGroup]="createForm" >
+      <section class="mat-typography">      
+        <div class="flex-space-between">
+          <h3 *ngIf="!id">Create a new Product</h3> 
+          <h3 *ngIf="id">Edit Product</h3> 
+            <div>
+              <button mat-raised-button class="btn btn-secondary" routerLink="/dashboard">
+                <i class="material-icons">undo </i>Dashboard</button> &nbsp;
+              <!-- disable if form is pristine or invalid or if any file is not added or removed -->
+              <button type="submit" (click)="saveClicked()" 
+              [disabled]="(createForm.pristine) ||createForm.invalid " 
+              mat-raised-button class="btn btn-secondary" >
+              <i class="material-icons">backup </i> Save </button> 
+            </div>
+          </div>
+        </section>
+        <mat-divider></mat-divider>
+      <br>
+      <span *ngIf="!id&& product?.created" class="created-class">
+        Created On :<i> {{product?.created | date}}</i> &nbsp;
+      </span>
+      <span *ngIf="id==''" class="created-class">
+          Create On :<i> {{date| date}}</i> &nbsp;
+      </span>
+        <mat-form-field class="field-full-width">
+          <input matInput placeholder ="Name*" formControlName="name" #name>
+        </mat-form-field> 
+        <mat-form-field class="field-full-width">
+          <input matInput placeholder ="Short Desciption" formControlName="short_description" #short_description>
+        </mat-form-field>
+        <mat-form-field class="field-full-width">
+          <input matInput placeholder ="Desciption" formControlName="description" #description>
+        </mat-form-field>
+        <mat-form-field class="field-full-width">
+          <input matInput placeholder ="Url" formControlName="url" #url>
+        </mat-form-field> 
+        <mat-form-field class="field-full-width">
+          <input matInput placeholder ="Our Price" formControlName="our_price" #our_price>
+        </mat-form-field>
+        <mat-form-field class="field-full-width">
+          <input matInput placeholder ="Items in stock" formControlName="items_in_stock" #items_in_stock>
+        </mat-form-field>
+         <br>
+          
+      </form>
+    </mat-card>
+  
+
+    <mat-card  class="product-desc" [ngClass]="{'showBlock':!isForm ,'hide':isForm}">
+      <section class="mat-typography">
+        <div class="flex-space-between">
+          <h3 >Product Desciption</h3> 
+          <div>
+            <button mat-raised-button class="btn btn-secondary" routerLink="/dashboard">
+              <i class="material-icons">undo </i>Dashboard</button> &nbsp;
+            <button mat-raised-button class="btn btn-secondary" (click)="isForm=true">
+                <i class="material-icons">edit </i> Edit
+            </button> 
+          </div>
+        </div>
+      </section>
+      <mat-divider></mat-divider>
+      <br>
+      <span class="created-class">Created On :<i> {{product?.date_added | date }}</i> &nbsp;
+      </span>
+      <h4>{{product?.name}}</h4>
+      <div [innerHTML]="product?.description"></div>
+      <p><span class="descValue-class">{{product?.short_description}}</span></p>
+      <p>Url :<span class="descValue-class"> {{product?.url}}</span></p>
+      <p>Our price : <span class="descValue-class"> {{product?.our_price}}</span></p>
+     
+      <br>
+    </mat-card>
+
+</div> 
+
+ 

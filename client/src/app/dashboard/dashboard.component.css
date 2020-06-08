@@ -1,0 +1,26 @@
+.dashboardPage{
+    width: 90%;
+    margin:auto;
+  }
+  table {
+    width:100%;
+    }
+  th.mat-sort-header-sorted {
+      color: grey;
+  }
+  .mat-row:hover {
+    background-color:#F2F5F8;
+  }
+  .btn-right{
+    float:right;
+    margin-right: 5px;
+  }
+  .center{
+    margin: auto;
+  }
+  .noProduct{
+    display: block;
+    width: 200px;
+    margin: auto;
+    font-size:1.7rem;
+  }

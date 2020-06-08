@@ -1,0 +1,36 @@
+<div class="login-page">
+    <br>
+    <mat-card  class="login-form">
+      <section class="mat-typography">
+        <h3 >Please Sign In</h3> 
+      </section>
+      <mat-divider></mat-divider>
+      <br>
+      <form [formGroup]="createLoginForm" >
+        <mat-form-field class="field-full-width">
+          <input matInput placeholder ="Email / User Name*" formControlName="emailOruserName" #emailOruserName>
+        </mat-form-field>
+          <mat-error *ngIf="(createLoginForm.get('emailOruserName').touched) && createLoginForm.get('emailOruserName').errors?.required">
+          Email /User name is required 
+        </mat-error>
+        <mat-form-field class="field-full-width">
+          <input matInput [type]="hide ? 'password' : 'text'" matInput placeholder ="Password*" formControlName="password" #password>
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+        <mat-error *ngIf="(createLoginForm.get('password').touched) && createLoginForm.get('password').errors?.required">
+          Password is required 
+        </mat-error>
+      </form>
+       <br>
+       <button type="submit"  (click)="signinFunction()"
+       [disabled]="(createLoginForm.pristine ||createLoginForm.invalid)" 
+       mat-raised-button class="btn btn-secondary" >Sign In</button> &nbsp;&nbsp;&nbsp;
+       <button mat-raised-button class="btn btn-secondary" (click)="goToSignup()">Sign Up</button> &nbsp;
+       <p> Forgot Your Password ? <a [routerLink]="['/request-reset-password']">Click Here</a></p>
+    </mat-card>
+</div>
+
+
+  
